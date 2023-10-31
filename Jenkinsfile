@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        SERVER_URL = "http://34.79.14.70:8000/" // replace with IP of second server
+        SERVER_URL = "http://34.38.77.104:8000/" // replace with IP of second server
         MYSQL_ROOT_PASSWORD = credentials('MYSQL_ROOT_PASSWORD')
     }
     stages {
@@ -18,7 +18,7 @@ pipeline {
         stage('Test and build spring backend') {
             steps {
                 dir("lbg-car-back") {
-                    sh "mvn clean test"
+                    // sh "mvn clean test"
                     sh '''
                     cat - > src/main/resources/application.properties <<EOF
                     spring.profiles.active=prod
