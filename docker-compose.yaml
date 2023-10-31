@@ -16,6 +16,7 @@ services:
       published: 8000
     depends_on:
     - mysql
+    restart: on-failure
     networks:
     - car-net
   mysql:
