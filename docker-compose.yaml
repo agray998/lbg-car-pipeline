@@ -7,6 +7,8 @@ services:
       published: 80
     depends_on:
     - lbg-car-back
+    networks:
+    - car-net
   lbg-car-back:
     image: agray998/lbg-car-back:latest
     ports:
@@ -14,8 +16,14 @@ services:
       published: 8000
     depends_on:
     - mysql
+    networks:
+    - car-net
   mysql:
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: cardb_jwt
+    networks:
+    - car-net
+networks:
+  car-net:
