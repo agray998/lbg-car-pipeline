@@ -26,5 +26,11 @@ services:
       MYSQL_DATABASE: cardb_jwt
     networks:
     - car-net
+    volumes:
+    - type: volume
+      source: cardb-vol
+      target: /var/lib/mysql
 networks:
   car-net:
+volumes:
+  cardb-vol
