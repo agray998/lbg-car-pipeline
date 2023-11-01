@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        SERVER_URL = "http://34.38.77.104:8000/" // replace with IP of second server
+        SERVER_URL = "http://35.195.123.173:8000/" // replace with IP of second server
         MYSQL_ROOT_PASSWORD = credentials('MYSQL_ROOT_PASSWORD')
     }
     stages {
@@ -54,9 +54,9 @@ pipeline {
         }
         stage('Deploy to server') {
             steps {
-                sh "scp -i ~/.ssh/server_key docker-compose.yaml jenkins@cardb-server:/home/jenkins/docker-compose.yaml"
+                sh "scp -i ~/.ssh/server_key docker-compose.yaml jenkins@adam-cardb-server:/home/jenkins/docker-compose.yaml"
                 sh """
-                ssh -i ~/.ssh/server_key jenkins@cardb-server <<EOF
+                ssh -i ~/.ssh/server_key jenkins@adam-cardb-server <<EOF
                 export MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
                 docker-compose up -d
                 """
