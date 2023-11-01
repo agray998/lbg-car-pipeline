@@ -11,7 +11,7 @@ pipeline {
                     git url: "https://github.com/agray998/lbg-car-react-starter", branch: "main"
                 }
                 dir("lbg-car-back") {
-                    git url: "https://github.com/agray998/lbg-car-spring-app-starter", branch: "main"
+                    git url: "https://github.com/QA-Instructor/lbg-car-spring-completed", branch: "main"
                 }
             }
         }
