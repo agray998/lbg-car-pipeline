@@ -18,7 +18,7 @@ pipeline {
         stage('Test and build spring backend') {
             steps {
                 dir("lbg-car-back") {
-                    // sh "mvn clean test"
+                    sh "mvn clean test"
                     sh '''
                     cat - > src/main/resources/application.properties <<EOF
                     spring.profiles.active=prod
