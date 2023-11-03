@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        maven 'M3'
+    }
     environment {
         SERVER_URL = "http://35.205.106.7:8000/" // replace with IP of second server
         MYSQL_ROOT_PASSWORD = credentials('MYSQL_ROOT_PASSWORD')
