@@ -5,3 +5,6 @@ metadata:
 spec:
   type: ExternalName
   externalName: <db pub dns>
+  ports:
+  - port: 3306
+    targetPort: 3306

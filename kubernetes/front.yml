@@ -27,7 +27,7 @@ kind: Service
 metadata:
   name: lbg-car-front
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: lbg-car-front
   ports:
