@@ -1,10 +1,48 @@
 apiVersion: apps/v1
 kind: Deployment
+metadata:
+  name: backend-deploy
+  labels:
+    app: lbg-car-back
+spec:
+  selector:
+    matchLabels:
+      app: lbg-car-back
+  replicas: 3
+  template:
+    metadata:
+      app: lbg-car-back
+    spec:
+      containers:
+      - name: backend
+        image: agray998/agray998/lbg-car-back:latest
+        imagePullPolicy: always
+        ports:
+        - containerPort: 8000
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-creds
+              key: password
 
 ---
 apiVersion: v1
 kind: Service
-
+metadata:
+  name: lbg-car-back
+spec:
+  type: ClusterIP
+  selector:
+    app: lbg-car-back
+  ports:
+    port: 8000
+    targetPort: 8000
 ---
 apiVersion: v1
 kind: Secret
+metadata:
+  name: mysql-creds
+type: Opaque
+stringData:
+  password: {{PASSWORD}}
