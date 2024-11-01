@@ -17,7 +17,7 @@ spec:
       containers:
       - name: backend
         image: agray998/lbg-car-back:latest
-        imagePullPolicy: always
+        imagePullPolicy: Always
         ports:
         - containerPort: 8000
         env:

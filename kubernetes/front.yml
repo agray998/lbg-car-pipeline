@@ -17,7 +17,7 @@ spec:
       containers:
       - name: frontend
         image: agray998/lbg-car-front:latest
-        imagePullPolicy: always
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
 
