@@ -11,7 +11,8 @@ spec:
   replicas: 3
   template:
     metadata:
-      app: lbg-car-front
+      labels:
+        app: lbg-car-front
     spec:
       containers:
       - name: frontend
@@ -30,5 +31,5 @@ spec:
   selector:
     app: lbg-car-front
   ports:
-    port: 80
+  - port: 80
     targetPort: 80

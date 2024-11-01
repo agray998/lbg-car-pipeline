@@ -11,7 +11,8 @@ spec:
   replicas: 3
   template:
     metadata:
-      app: lbg-car-back
+      labels:
+        app: lbg-car-back
     spec:
       containers:
       - name: backend
@@ -36,7 +37,7 @@ spec:
   selector:
     app: lbg-car-back
   ports:
-    port: 8000
+  - port: 8000
     targetPort: 8000
 ---
 apiVersion: v1
