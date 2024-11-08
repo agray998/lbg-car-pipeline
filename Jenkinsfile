@@ -4,8 +4,9 @@ pipeline {
         maven 'M3'
     }
     environment {
-        SERVER_URL = "http://35.205.106.7:8000/" // replace with IP of second server
+        SERVER_URL = "http://<SERVER_IP>:8000/" // replace with IP of second server
         MYSQL_ROOT_PASSWORD = credentials('MYSQL_ROOT_PASSWORD')
+        DOCKERHUB_CREDS = credentials('DOCKERHUB_CREDS')
     }
     stages {
         stage('Checkout source repos') {
@@ -48,11 +49,13 @@ pipeline {
         }
         stage('Push docker images and cleanup') {
             steps {
+                sh "docker login -u ${DOCKERHUB_CREDS_USR} -p ${DOCKERHUB_CREDS_PSW}"
                 sh "docker push agray998/lbg-car-front:v${BUILD_NUMBER}"
                 sh "docker push agray998/lbg-car-front:latest"
                 sh "docker push agray998/lbg-car-back:v${BUILD_NUMBER}"
                 sh "docker push agray998/lbg-car-back:latest"
                 sh "docker rmi agray998/lbg-car-back agray998/lbg-car-back:v${BUILD_NUMBER} agray998/lbg-car-front agray998/lbg-car-front:v${BUILD_NUMBER}"
+                sh "docker logout"
             }
         }
         stage('Deploy to server') {
